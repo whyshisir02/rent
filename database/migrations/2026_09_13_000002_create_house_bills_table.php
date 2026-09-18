@@ -1,3 +1,6 @@
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Route;
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -11,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('verification_documents', function (Blueprint $table) {
+        Schema::create('house_bills', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('user_id')
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('verification_documents');
+        Schema::dropIfExists('house_bills');
     }
 };
