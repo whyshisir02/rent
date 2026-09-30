@@ -36,4 +36,9 @@ class Tenant extends Model
     {
         return $this->belongsTo(User::class, 'verified_by');
     }
+
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

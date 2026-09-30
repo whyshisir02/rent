@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\LandlordController;
 use App\Http\Controllers\Api\TenantController;
 use App\Http\Controllers\Api\VerificationDocumentController;
 use App\Http\Controllers\Api\ProfileVerificationController;
+use App\Http\Controllers\Api\PropertyController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/request-otp', [AuthController::class, 'requestOtp']);
@@ -32,6 +33,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // Tenant
     Route::post('/tenants', [TenantController::class, 'store']);
     Route::get('/tenants/me', [TenantController::class, 'me']);
+
+    // Properties (landlord-owned; create requires approved verification)
+    Route::post('/properties', [PropertyController::class, 'store']);
+    Route::get('/properties', [PropertyController::class, 'index']);
+    Route::get('/properties/{property}', [PropertyController::class, 'show']);
+    Route::patch('/properties/{property}', [PropertyController::class, 'update']);
+    Route::delete('/properties/{property}', [PropertyController::class, 'destroy']);
 
     // Verification Documents (upload + list own)
     Route::get(
